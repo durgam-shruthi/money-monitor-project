@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Targets</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="static/vendors/feather/feather.css">
+    <link rel="stylesheet" href="static/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="static/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="static/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="static/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="static/js/select.dataTables.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="static/css/vertical-layout-light/style.css">
+    <link rel="stylesheet" href="path-to/node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css" />
+    <!-- endinject -->
+    <link rel="shortcut icon" href="static/images/mini_logo-nobg.png" />
+    <!--Chart.js Script Import-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <!--mdi Icons-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='/vendors/mdi/css/materialdesignicons.min.css') }}">
+  </head>
+
+
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo mr-5" href="/"><img src="static/images/logo_latest.png" class="mr-2" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini" href="/"><img src="static/images/mini_logo-nobg.png" alt="logo"/></a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+
+        <ul class="navbar-nav mr-lg-2">
+          <li class="nav-item nav-search d-none d-lg-block">
+            <div class="input-group">
+              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                <span class="input-group-text" id="search">
+                  <i class="icon-search"></i>
+                </span>
+              </div>
+              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item nav-profile dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+              <img src="static/images/faces/Ramarao.jpeg" alt="profile"/>
+            </a>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="icon-menu"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_settings-panel.html -->
+      <!-- partial -->
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="icon-bar-graph menu-icon"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/crypto">
+              <i class="mdi mdi-coin menu-icon"></i>
+              <span class="menu-title">Cryptocurrency</span>
+            </a>
+          </li>
+
+          <li><hr class="solid"></li>
+          <li><p style="font-size: 13px;">CATEGORIES</p></li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/online">
+              <i class="mdi mdi-cart-outline menu-icon"></i>
+              <span class="menu-title">Online Shopping</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/food">
+              <i class="mdi mdi-food-fork-drink menu-icon"></i>
+              <span class="menu-title">Food</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/home">
+              <i class="mdi mdi-home menu-icon"></i>
+              <span class="menu-title">Home</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/recharge">
+              <i class="mdi mdi-amazon menu-icon"></i>
+              <span class="menu-title">Recharge</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/health">
+              <i class="mdi mdi-heart-pulse menu-icon"></i>
+              <span class="menu-title">Health</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/festival">
+              <i class="mdi mdi-fire menu-icon"></i>
+              <span class="menu-title">Festival</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/other">
+              <i class="mdi mdi-compass-outline menu-icon"></i>
+              <span class="menu-title">Others</span>
+            </a>
+          </li>
+
+          <li><hr class="solid"></li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/earning">
+              <i class="mdi mdi-coin menu-icon"></i>
+              <span class="menu-title">Earnings</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/payment">
+              <i class="mdi mdi-cards-outline menu-icon"></i>
+              <span class="menu-title">Payment Type</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/target">
+              <i class="mdi mdi-target menu-icon"></i>
+              <span class="menu-title">Targets</span>
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <div class="row">
+                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                  <h3 class="font-weight-bold">Targets Information</h3>
+                </div>
+                <div class="col-12 col-xl-4">
+                 <div class="justify-content-end d-flex">
+                  <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+                    <button class="btn btn-sm btn-light bg-light " type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                      Today ({{Date}})
+                    </button>
+                  </div>
+                 </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--Target Information-->
+
+          <div class="row">
+            <div class="col-12 grid-margin">
+              <!--Add Shadow Later-->
+              <div class="card">
+                <div class="card-body">
+                  <!--<h4 class="card-title">Product Information</h4>-->
+                  <form class="form-sample", action="/target", method="POST">
+                    <input type="hidden" name="form-name" value="target-form">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Product Name</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="Product_name" placeholder="Enter Target Name"/>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Product Price</label>
+                          <div class="col-sm-9">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text bg-primary text-white">$</span>
+                              <input type="text" class="form-control" name="Product_price" placeholder="Enter Target Price"/>
+                              <span class="input-group-text">.00</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+  
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label"> Product Link</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="Product_link" placeholder="Enter Product Link"/>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <div class="col-md-3" style="margin-top: 10px;">
+                            <label>File upload</label>
+                          </div>
+                          <input type="file" name="img[]" class="file-upload-default">
+                          <div class="input-group col-md-9">
+                            <input type="text" class="form-control file-upload-info"  disabled="" placeholder="Upload Image">
+                            <span class="input-group-append">
+                              <button class="file-upload-browse btn btn-info"  type="button">Upload</button>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+  
+                    <button type="submit" class="btn btn-primary mr-2 ">Submit</button>
+                    <button type="reset" class="btn btn-light">Reset</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product Cards -->
+          {% for value in values %}
+            <div class="row">
+              {% for row in value %}
+                <div class="col-6 grid-margin">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex flex-wrap mb-5 mb-5" style="justify-content: space-between;">
+                        <div class="mt-3">
+                          <p class="card-title">{{row["Product_Name"]}}</p>
+                        </div>
+                        {% if Current_prices[row['Product_Name']] == row['Target_Price'] %}
+                          <div class="mt-3" >
+                            <p class="card-title text-success">Target Achieved</p>
+                          </div>
+                        {% else %}
+                          <div class="mt-3" >
+                            <p class="card-title text-white">Target Achieved</p>
+                          </div>
+                        {% endif %}
+                        <div class="mt-2">
+                          <a href="{{ row['Product_Link'] }}">
+                            <button class="btn btn-sm btn-outline-info btn-fw " >Product</button>
+                          </a>
+                          <!--SHOULD BE UPDATED-->
+                          <a href="/target">
+                            <button class="btn btn-sm btn-outline-info btn-fw ">Done</button>
+                          </a>
+
+                        </div>
+                      </div>
+                      <div class="d-flex flex-wrap mb-2" style="margin-top: -45px;">
+                        <img class="card" src="{{ row['File_Path'] }}" width="500px" height='330px' alt="people">
+                      </div>
+                      <progress id="file" value="{{ percentages[row['Product_Name']] }}" max="100" style="width: 500px;height: 20px;"> {{ percentages[row['Product_Name']] }}% </progress>
+                      <div class="d-flex flex-wrap mb-2" style="justify-content: space-between;">
+                        <div class="mt-3">
+                          <p class="text">Current: <span style="font-weight: 600;">₹{{Current_prices[row['Product_Name']]}}</span></p>
+                        </div>
+                        <div class="mt-3">
+                          <p class="text" style="font-weight: 600;">{{ percentages[row['Product_Name']] }}%</p>
+                        </div>
+                        <div class="mt-3">
+                          <p class="text">Target: <span style="font-weight: 600;">₹{{ row['Target_Price'] }}</span></p>
+                        </div>
+                      </div>
+                      <div class="d-flex flex-wrap mb-2" style="justify-content: space-between;">
+                        <div class="mt-3">
+                          <p class="text-success">Saving Duration: <span style="font-weight: 600;">{{row["Saving_Duration"]}} Days</span></p>
+                        </div>
+                        {% if Current_prices[row['Product_Name']] == row['Target_Price'] %}
+                          <div class="mt-3">
+                            <p class="text-success">Target Acheived Time: <span style="font-weight: 600;">300 Days</span></p>
+                          </div>
+                        {% else %}
+                          <div class="mt-3">
+                            <p class="text-white">Target Acheived Time: <span style="font-weight: 600;">300 Days</span></p>
+                          </div>
+                        {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          {% endfor %}
+          
+
+          <!--<div class="row">
+            <div class="col-6 grid-margin">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-wrap mb-5" style="justify-content: space-between;">
+                    <div class="mt-3">
+                      <p class="card-title">Television</p>
+                    </div>
+                    <div class="mt-3" >
+                      <p class="card-title text-success">Target Achieved</p>
+                    </div>
+                    <div class="mt-2">
+                      <button class="btn btn-sm btn-outline-info btn-fw ">Product</button>
+                      <button class="btn btn-sm btn-outline-info btn-fw ">Done</button>
+                    </div>
+                  </div>
+                  <div class="d-flex flex-wrap mb-2" style="margin-top: -45px;">
+                    <img class="card" src="static/Target_Images/tv.png" width="500px" height='350px' alt="people">
+                  </div>
+                  <progress id="file" value="40" max="100" style="width: 500px;height: 20px;"> 32% </progress>
+
+                  <div class="d-flex flex-wrap mb-2" style="justify-content: space-between;">
+                    <div class="mt-3">
+                      <p class="text">Current: <span style="font-weight: 600;">₹12,300</span></p>
+                    </div>
+                    <div class="mt-3">
+                      <p class="text" style="font-weight: 600;">32%</p>
+                    </div>
+                    <div class="mt-3">
+                      <p class="text">Target: <span style="font-weight: 600;">₹50,300</span></p>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-wrap mb-2" style="justify-content: space-between;">
+                    <div class="mt-3">
+                      <p class="text-success">Saving Duration: <span style="font-weight: 600;">300 Days</span></p>
+                    </div>
+                    <div class="mt-3">
+                      <p class="text-success">Target Acheived Time: <span style="font-weight: 600;">300 Days</span></p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-6 grid-margin">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-wrap mb-5" style="justify-content: space-between;">
+                    <div class="mt-3">
+                      <p class="card-title">Land</p>
+                    </div>
+                    <div class="mt-3">
+                      <p class="card-title text-success">Target Achieved</p>
+                    </div>
+                    <div class="mt-2">
+                      <button class="btn btn-sm btn-outline-info btn-fw ">Product</button>
+                      <button class="btn btn-sm btn-outline-info btn-fw ">Done</button>
+                    </div>
+                  </div>
+                  <div class="d-flex flex-wrap mb-2" style="margin-top: -45px;">
+                    <img class="card" src="8749.jpg" width="500px" height='350px' alt="people">
+                  </div>
+                  <progress id="file" value="62" max="100" style="width: 500px;height: 20px;"> 32% </progress>
+
+                  <div class="d-flex flex-wrap mb-2" style="justify-content: space-between;">
+                    <div class="mt-3" >
+                      <p class="text">Current: <span style="font-weight: 600;">₹12,300</span></p>
+                    </div>
+                    <div class="mt-3">
+                      <p class="text" style="font-weight: 600;">62%</p>
+                    </div>
+                    <div class="mt-3">
+                      <p class="text">Target: <span style="font-weight: 600;">₹50,300</span></p>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-wrap mb-2" style="justify-content: space-between;">
+                    <div class="mt-3">
+                      <p class="text-success">Saving Duration: <span style="font-weight: 600;">300 Days</span></p>
+                    </div>
+                    <div class="mt-3">
+                      <p class="text-success">Target Acheived Time: <span style="font-weight: 600;">300 Days</span></p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            
+          </div>-->
+
+      
+        <!-- content-wrapper ends -->
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+ <!-- plugins:js -->
+ <script src="static/vendors/js/vendor.bundle.base.js"></script>
+ <!-- endinject -->
+ <!-- Plugin js for this page -->
+ <script src="static/vendors/chart.js/Chart.min.js"></script>
+ <script src="static/vendors/datatables.net/jquery.dataTables.js"></script>
+ <script src="static/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+ <script src="static/js/dataTables.select.min.js"></script>
+
+ <!-- End plugin js for this page -->
+ <!-- inject:js -->
+ <script src="static/js/off-canvas.js"></script>
+ <script src="static/js/hoverable-collapse.js"></script>
+ <script src="static/js/template.js"></script>
+ <script src="static/js/settings.js"></script>
+ <script src="static/js/todolist.js"></script>
+ <!-- endinject -->
+ <!-- Custom js for this page-->
+ <script src="static/js/dashboard.js"></script>
+ <script src="static/js/Chart.roundedBarCharts.js"></script>
+ <!-- End custom js for this page-->
+
+ <!-- container-scroller -->>
+ <!-- Custom js for this page-->
+ <script src="static/js/chart.js"></script>
+ <script src="static/js/file-upload.js"></script>
+ <script src="static/js/select2.js"></script>
+
+</body>
+
+</html>
+

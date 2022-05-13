@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Festival</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="static/vendors/feather/feather.css">
+  <link rel="stylesheet" href="static/vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="static/vendors/css/vendor.bundle.base.css">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <link rel="stylesheet" href="static/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="static/vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" type="text/css" href="static/js/select.dataTables.min.css">
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="static/css/vertical-layout-light/style.css">
+  <link rel="stylesheet" href="path-to/node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css" />
+  <!-- endinject -->
+  <link rel="shortcut icon" href="static/images/mini_logo-nobg.png" />
+  <!--Chart.js Script Import-->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+  <!--mdi Icons-->
+  <link rel="stylesheet" href="{{ url_for('static', filename='/vendors/mdi/css/materialdesignicons.min.css') }}">
+</head>
+
+
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo mr-5" href="/"><img src="static/images/logo_latest.png" class="mr-2" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini" href="/"><img src="static/images/mini_logo-nobg.png" alt="logo"/></a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <!--<button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <span class="icon-menu"></span>
+        </button>-->
+        <ul class="navbar-nav mr-lg-2">
+          <li class="nav-item nav-search d-none d-lg-block">
+            <div class="input-group">
+              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                <span class="input-group-text" id="search">
+                  <i class="icon-search"></i>
+                </span>
+              </div>
+              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item nav-profile dropdown">
+            <a class="nav-link" href="https://www.linkedin.com/in/ramarao-mv/">
+              <img src="static/images/faces/Ramarao.jpeg" alt="profile"/>
+            </a>
+          </li>
+        </ul>
+        <!--<button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="icon-menu"></span>
+        </button>-->
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_settings-panel.html -->
+      <!--<div class="theme-setting-wrapper">
+        <div id="settings-trigger"><i class="ti-settings"></i></div>
+        <div id="theme-settings" class="settings-panel">
+          <i class="settings-close ti-close"></i>
+          <p class="settings-heading">SIDEBAR SKINS</p>
+          <div class="sidebar-bg-options selected" id="sidebar-light-theme"><div class="img-ss rounded-circle bg-light border mr-3"></div>Light</div>
+          <div class="sidebar-bg-options" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark</div>
+          <p class="settings-heading mt-2">HEADER SKINS</p>
+          <div class="color-tiles mx-0 px-4">
+            <div class="tiles success"></div>
+            <div class="tiles warning"></div>
+            <div class="tiles danger"></div>
+            <div class="tiles info"></div>
+            <div class="tiles dark"></div>
+            <div class="tiles default"></div>
+          </div>
+        </div>
+      </div>-->
+      <!-- partial -->
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="icon-bar-graph menu-icon"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/crypto">
+              <i class="mdi mdi-coin menu-icon"></i>
+              <span class="menu-title">Cryptocurrency</span>
+            </a>
+          </li>
+
+          <li><hr class="solid"></li>
+          <li><p style="font-size: 13px;">CATEGORIES</p></li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/online">
+              <i class="mdi mdi-cart-outline menu-icon"></i>
+              <span class="menu-title">Online Shopping</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/food">
+              <i class="mdi mdi-food-fork-drink menu-icon"></i>
+              <span class="menu-title">Food</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/home">
+              <i class="mdi mdi-home menu-icon"></i>
+              <span class="menu-title">Home</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/recharge">
+              <i class="mdi mdi-amazon menu-icon"></i>
+              <span class="menu-title">Recharge</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/health">
+              <i class="mdi mdi-heart-pulse menu-icon"></i>
+              <span class="menu-title">Health</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/festival">
+              <i class="mdi mdi-fire menu-icon"></i>
+              <span class="menu-title">Festival</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/other">
+              <i class="mdi mdi-compass-outline menu-icon"></i>
+              <span class="menu-title">Others</span>
+            </a>
+          </li>
+
+          <li><hr class="solid"></li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/earning">
+              <i class="mdi mdi-coin menu-icon"></i>
+              <span class="menu-title">Earnings</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/payment">
+              <i class="mdi mdi-cards-outline menu-icon"></i>
+              <span class="menu-title">Payment Type</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/target">
+              <i class="mdi mdi-target menu-icon"></i>
+              <span class="menu-title">Targets</span>
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <div class="row">
+                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                  <h3 class="font-weight-bold">Festival</h3>
+                </div>
+                <div class="col-12 col-xl-4">
+                 <div class="justify-content-end d-flex">
+                  <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+                    <button class="btn btn-sm btn-light bg-white" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                     Today ({{ Date }})
+                    </button>
+                    <!--<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
+                      <a class="dropdown-item" href="#">January - March</a>
+                      <a class="dropdown-item" href="#">March - June</a>
+                      <a class="dropdown-item" href="#">June - August</a>
+                      <a class="dropdown-item" href="#">August - October</a>
+                    </div>-->
+                  </div>
+                 </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!--"Yearly Detail Report"-->
+
+          <div class="row">
+            <div class="col-12 grid-margin">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title">Monthly Festival Expenditure</p>
+                  <p class="font-weight-500">The Total Amount Spend during Festival Days Within The Month.</p>
+                  <canvas id="areaChartfestival1" width="1538" height="400"></canvas>
+                  <script>
+
+                    var options = {
+                      // responsive: true,
+                      plugins: {
+                        filler: {
+                          propagate: true
+                        }
+                      },
+                      scales: {
+                        xAxes: [{
+                          gridLines: {
+                            display: false
+                          },
+                          scaleLabel: {
+                            display: true,
+                            labelString: 'Days'
+                          },
+                          ticks:{
+                            maxTicksLimit: 10
+                          }
+                        }],
+                        yAxes: [{
+                          ticks: {
+                            maxTicksLimit: 5
+                          },
+                          scaleLabel: {
+                            display: true,
+                            labelString: 'Amount Spend'
+                          }
+                        }]
+                      },
+                      elements: {
+                      point: { radius: 1.25 }
+                    }
+                    };
+
+                    var area_data = {
+                      labels: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],
+                      datasets: [{
+                        label: 'Festival',
+                        backgroundColor: 'rgba(241, 168, 70, 0.2)',
+
+                        borderColor: 'rgba(241, 168, 70, 1)',
+
+                        data: {{ month_values | safe }},
+                        borderWidth: 2,
+                        fill: true,
+                      }]
+                    };
+
+                    const ctx = document.getElementById('areaChartfestival1').getContext('2d');
+                    const areaChartrecharge1 = new Chart(ctx, {
+                        type: 'line',
+                        data: area_data,
+                        options: options
+                    });
+
+                  </script>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!--Expenditure Table-->
+  
+
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="col-lg-12 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title">Festival Related Transactions</h4>
+                      <p class="card-description">
+                        Latest Transactions Done By The Users
+                      </p>
+                      <div class="table-responsive">
+                        <table class="table table-striped">
+                          <thead>
+                            <tr>
+                              <th>User</th>
+                              <th>Date</th>
+                              <th>Bill</th>
+                              <th>Bill Holder Name</th>
+                              <th>Mode Of Payment</th>
+                              <th>Amount</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {% for row in rows %}
+                            <tr>
+                              <td>{{row["User"]}}</td>
+                               <td>{{row["Date"]}}</td>
+                               <td> {{ row["Bill"] }}</td>
+                               <td>{{row['Holder_Name']}}</td>
+                               <td>{{row['Payment_Mode']}}</td>	
+                               <td class="font-weight-bold">₹ {{row['Amount']}}</td>		
+                            </tr>
+                            {% endfor %}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <!--<footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
+          </div>
+        </footer>-->
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  <!-- plugins:js -->
+ <script src="static/vendors/js/vendor.bundle.base.js"></script>
+ <!-- endinject -->
+ <!-- Plugin js for this page -->
+ <script src="static/vendors/chart.js/Chart.min.js"></script>
+ <script src="static/vendors/datatables.net/jquery.dataTables.js"></script>
+ <script src="static/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+ <script src="static/js/dataTables.select.min.js"></script>
+
+ <!-- End plugin js for this page -->
+ <!-- inject:js -->
+ <script src="static/js/off-canvas.js"></script>
+ <script src="static/js/hoverable-collapse.js"></script>
+ <script src="static/js/template.js"></script>
+ <script src="static/js/settings.js"></script>
+ <script src="static/js/todolist.js"></script>
+ <!-- endinject -->
+ <!-- Custom js for this page-->
+ <script src="static/js/dashboard.js"></script>
+ <script src="static/js/Chart.roundedBarCharts.js"></script>
+ <!-- End custom js for this page-->
+
+   <!-- container-scroller -->>
+ <!-- Custom js for this page-->
+ <script src="static/js/chart.js"></script>
+ <!-- End custom js for this page-->
+</body>
+
+</html>
+

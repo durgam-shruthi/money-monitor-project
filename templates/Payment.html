@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Payment Type</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="static/vendors/feather/feather.css">
+  <link rel="stylesheet" href="static/vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="static/vendors/css/vendor.bundle.base.css">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <link rel="stylesheet" href="static/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="static/vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" type="text/css" href="static/js/select.dataTables.min.css">
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="static/css/vertical-layout-light/style.css">
+  <link rel="stylesheet" href="path-to/node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css" />
+  <!-- endinject -->
+  <link rel="shortcut icon" href="static/images/mini_logo-nobg.png" />
+  <!--Chart.js Script Import-->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+  <!--mdi Icons-->
+  <link rel="stylesheet" href="{{ url_for('static', filename='/vendors/mdi/css/materialdesignicons.min.css') }}">
+</head>
+
+
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo mr-5" href="/"><img src="static/images/logo_latest.png" class="mr-2" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini" href="/"><img src="static/images/mini_logo-nobg.png" alt="logo"/></a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <!--<button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <span class="icon-menu"></span>
+        </button>-->
+        <ul class="navbar-nav mr-lg-2">
+          <li class="nav-item nav-search d-none d-lg-block">
+            <div class="input-group">
+              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                <span class="input-group-text" id="search">
+                  <i class="icon-search"></i>
+                </span>
+              </div>
+              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item nav-profile dropdown">
+            <a class="nav-link" href="https://www.linkedin.com/in/ramarao-mv/">
+              <img src="static/images/faces/Ramarao.jpeg" alt="profile"/>
+            </a>
+          </li>
+        </ul>
+        <!--<button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="icon-menu"></span>
+        </button>-->
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_settings-panel.html -->
+
+      <!-- partial -->
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="icon-bar-graph menu-icon"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/crypto">
+              <i class="mdi mdi-coin menu-icon"></i>
+              <span class="menu-title">Cryptocurrency</span>
+            </a>
+          </li>
+
+          <li><hr class="solid"></li>
+          <li><p style="font-size: 13px;">CATEGORIES</p></li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/online">
+              <i class="mdi mdi-cart-outline menu-icon"></i>
+              <span class="menu-title">Online Shopping</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/food">
+              <i class="mdi mdi-food-fork-drink menu-icon"></i>
+              <span class="menu-title">Food</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/home">
+              <i class="mdi mdi-home menu-icon"></i>
+              <span class="menu-title">Home</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/recharge">
+              <i class="mdi mdi-amazon menu-icon"></i>
+              <span class="menu-title">Recharge</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/health">
+              <i class="mdi mdi-heart-pulse menu-icon"></i>
+              <span class="menu-title">Health</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/festival">
+              <i class="mdi mdi-fire menu-icon"></i>
+              <span class="menu-title">Festival</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/other">
+              <i class="mdi mdi-compass-outline menu-icon"></i>
+              <span class="menu-title">Others</span>
+            </a>
+          </li>
+
+          <li><hr class="solid"></li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/earning">
+              <i class="mdi mdi-coin menu-icon"></i>
+              <span class="menu-title">Earnings</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/payment">
+              <i class="mdi mdi-cards-outline menu-icon"></i>
+              <span class="menu-title">Payment Type</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/target">
+              <i class="mdi mdi-target menu-icon"></i>
+              <span class="menu-title">Targets</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <div class="row">
+                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                  <h3 class="font-weight-bold">Mode of Payments</h3>
+                  <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span class="text-primary">3 unread alerts!</span></h6>
+                </div>
+                <div class="col-12 col-xl-4">
+                 <div class="justify-content-end d-flex">
+                  <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+                    <button class="btn btn-sm btn-light bg-white" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                      Today ({{ Date }})
+                    </button>
+                    <!--<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
+                      <a class="dropdown-item" href="#">January - March</a>
+                      <a class="dropdown-item" href="#">March - June</a>
+                      <a class="dropdown-item" href="#">June - August</a>
+                      <a class="dropdown-item" href="#">August - October</a>
+                    </div>-->
+                  </div>
+                 </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+
+            <div class="col-md-6 grid-margin transparent">
+              <div class="row">
+                <div class="col-md-6 mb-4 stretch-card transparent">
+                  <div class="card card-new-blue">
+                    <div class="card-body">
+                      <p class="mb-4">Cash Payment's</p>
+                      <p class="fs-30 mb-2">₹ {{month_cash_spend}}</p>
+                      <p>(30 days)</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4 stretch-card transparent">
+                  <div class="card card-dark-blue">
+                    <div class="card-body">
+                      <p class="mb-4">Credit Card Payment's</p>
+                      <p class="fs-30 mb-2">₹ {{month_credit_spend}}</p>
+                      <p>(30 days)</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
+                  <div class="card card-dark-pink">
+                    <div class="card-body">
+                      <p class="mb-4">Debit Card Payment's</p>
+                      <p class="fs-30 mb-2">₹ {{month_debit_spend}}</p>
+                      <p>(30 days)</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 stretch-card transparent">
+                  <div class="card card-light-blue">
+                    <div class="card-body">
+                      <p class="mb-4">UPI Payment's</p>
+                      <p class="fs-30 mb-2">₹ {{month_upi_spend}}</p>
+                      <p>(30 days)</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--<div class="col-md-6 grid-margin stretch-card">
+              <div class="card tale-bg">
+                <div class="card-people mt-auto">
+                  <img src="images/dashboard/people.svg" alt="people">
+                  <div class="weather-info">
+                    <div class="d-flex">
+                      <div>
+                        <h2 class="mb-0 font-weight-normal"><i class="icon-sun mr-2"></i>31<sup>C</sup></h2>
+                      </div>
+                      <div class="ml-2">
+                        <h4 class="location font-weight-normal">Kodad Town </h4>
+                        <h6 class="font-weight-normal">India</h6>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>-->
+
+            <!--Payment Types-->
+
+            <div class="col-lg-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Payment Types</h4>
+                  <canvas id="doughnutChart1" height="150"></canvas>
+                  <script>
+
+                    var doughnutPieOptions = {
+                        responsive: true,
+                        animation: {
+                          animateScale: true,
+                          animateRotate: true
+                        }
+                      };
+
+                    var doughnutPieData = {
+                      datasets: [{
+                        data: {{percents | safe }},
+                        backgroundColor: [
+                          'rgba(255, 99, 132, 0.5)',
+                          'rgba(54, 162, 235, 0.5)',
+                          'rgba(255, 206, 86, 0.5)',
+                          'rgba(75, 192, 192, 0.5)',
+                          'rgba(153, 102, 255, 0.5)',
+                          'rgba(255, 159, 64, 0.5)'
+                        ],
+                        borderColor: [
+                          'rgba(255,99,132,1)',
+                          'rgba(54, 162, 235, 1)',
+                          'rgba(255, 206, 86, 1)',
+                          'rgba(75, 192, 192, 1)',
+                          'rgba(153, 102, 255, 1)',
+                          'rgba(255, 159, 64, 1)'
+                        ],
+                      }],
+
+                        // These labels appear in the legend and in the tooltips when hovering different arcs
+                        labels: [
+                          'Cash',
+                          'Credit',
+                          'Debit',
+                          'Phonepe',
+                          'GPay',
+                        ]
+                      };
+
+                    const ctx = document.getElementById('doughnutChart1').getContext('2d');
+                    const doughnutChart1 = new Chart(ctx, {
+                        type: 'doughnut',
+                        data: doughnutPieData,
+                        options: doughnutPieOptions
+                    });
+
+                  </script>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <!--Expenditure Table-->
+  
+
+          <!--<div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="col-lg-12 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title">Payment Type Wise Transactions</h4>
+                      <p class="card-description">
+                        Latest Cryptocurrency Earning's of The Users
+                      </p>
+                      <div class="table-responsive">
+                        <table class="table table-striped">
+                          <thead>
+                            <tr>
+                              <th>User</th>
+                              <th>Date</th>
+                              <th>Amount Earned</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>19-10-2021</td>
+                              <td>11:00 AM</td>
+                              <td class="font-weight-bold">₹199.00</td>
+                            </tr>
+                            <tr>
+                              <td>19-10-2021</td>
+                              <td>1:00 PM</td>
+                              <td class="font-weight-bold">₹2000.00</td>
+                            </tr>
+                            <tr>
+                              <td>19-10-2021</td>
+                              <td>5:00 PM</td>
+                              <td class="font-weight-bold">₹350.00</td>
+                            </tr>
+                            <tr>
+                              <td>19-10-2021</td>
+                              <td>6:00 PM</td>
+                              <td class="font-weight-bold">₹100.00</td>
+                            </tr>
+                            <tr>
+                              <td>19-10-2021</td>
+                              <td>11:00 AM</td>
+                              <td class="font-weight-bold">₹199.00</td>
+                            </tr>
+                            <tr>
+                              <td>19-10-2021</td>
+                              <td>11:00 AM</td>
+                              <td class="font-weight-bold">₹199.00</td>
+                            </tr>
+                            <tr>
+                              <td>19-10-2021</td>
+                              <td>11:00 AM</td>
+                              <td class="font-weight-bold">₹199.00</td>
+                            </tr>
+                            <tr>
+                              <td>19-10-2021</td>
+                              <td>11:00 AM</td>
+                              <td class="font-weight-bold">₹199.00</td>
+                            </tr>
+                            <tr>
+                              <td>19-10-2021</td>
+                              <td>11:00 AM</td>
+                              <td class="font-weight-bold">₹199.00</td>
+                            </tr>
+                            <tr>
+                              <td>19-10-2021</td>
+                              <td>11:00 AM</td>
+                              <td class="font-weight-bold">₹199.00</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>-->
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <!--<footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
+          </div>
+        </footer>-->
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  <!-- plugins:js -->
+ <script src="static/vendors/js/vendor.bundle.base.js"></script>
+ <!-- endinject -->
+ <!-- Plugin js for this page -->
+ <script src="static/vendors/chart.js/Chart.min.js"></script>
+ <script src="static/vendors/datatables.net/jquery.dataTables.js"></script>
+ <script src="static/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+ <script src="static/js/dataTables.select.min.js"></script>
+
+ <!-- End plugin js for this page -->
+ <!-- inject:js -->
+ <script src="static/js/off-canvas.js"></script>
+ <script src="static/js/hoverable-collapse.js"></script>
+ <script src="static/js/template.js"></script>
+ <script src="static/js/settings.js"></script>
+ <script src="static/js/todolist.js"></script>
+ <!-- endinject -->
+ <!-- Custom js for this page-->
+ <script src="static/js/dashboard.js"></script>
+ <script src="static/js/Chart.roundedBarCharts.js"></script>
+ <!-- End custom js for this page-->
+
+   <!-- container-scroller -->>
+ <!-- Custom js for this page-->
+ <script src="static/js/chart.js"></script>
+ <!-- End custom js for this page-->
+</body>
+
+</html>
+

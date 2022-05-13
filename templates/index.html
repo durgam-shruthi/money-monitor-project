@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Monitor</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="static/vendors/feather/feather.css">
+  <link rel="stylesheet" href="static/vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="static/vendors/css/vendor.bundle.base.css">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <link rel="stylesheet" href="static/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="static/vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" type="text/css" href="static/js/select.dataTables.min.css">
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='/css/vertical-layout-light/style.css') }}">
+  <link rel="stylesheet" href="path-to/node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css" />
+  <!-- endinject -->
+  <link rel="shortcut icon" href="static/images/mini_logo-nobg.png" />
+  <!--Chart.js Script Import-->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+  <!--mdi Icons-->
+  <link rel="stylesheet" href="{{ url_for('static', filename='/vendors/mdi/css/materialdesignicons.min.css') }}">
+
+  <!--Poppins Font-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      var earnings_and_savings = {{ e_and_savings | safe }}
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      //['Month', 'Earnings', 'Savings'],
+      //['2014', 1000, 400],
+      //['2015', 1170, 460],
+      //['2016', 660, 1120],
+      //['2017', 1030, 540],
+      //['2017', 1000, 540]
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable(earnings_and_savings);
+
+      
+        var options = {
+          chart: {
+            // title: 'Company Performance',
+            // subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+          },
+          animation:{
+            duration: 1000,
+            easing: 'out',
+          },
+          colors: ['#4E44EC', '#B72AF6'],
+          legend: {position: 'none'},
+          
+          bars: 'vertical' // Required for Material Bar Charts.
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
+    
+  </head>
+
+</head>
+
+
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo mr-5" href="/"><img src="static/images/logo_latest.png" class="mr-2" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini" href="/"><img src="static/images/mini_logo-nobg.png" alt="logo"/></a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <!--<button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <span class="icon-menu"></span>
+        </button>-->
+        <ul class="navbar-nav mr-lg-2">
+          <li class="nav-item nav-search d-none d-lg-block">
+            <div class="input-group">
+              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                <span class="input-group-text" id="search">
+                  <i class="icon-search"></i>
+                </span>
+              </div>
+              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+
+          <!-- Date -->
+          <li class="nav-item dropdown">
+            <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+              <button class="btn btn-sm btn-light bg-light " type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+               <i class="mdi mdi-calendar"></i> Today ({{Date}})
+              </button>
+            </div>
+          </li>
+
+          <!-- Profile Image -->
+          <li class="nav-item nav-profile dropdown">
+            <a class="nav-link" href="https://www.linkedin.com/in/ramarao-mv/">
+              <img src="static/images/faces/Ramarao.jpeg" alt="profile"/>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial -->
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="icon-bar-graph menu-icon"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/crypto">
+              <i class="mdi mdi-coin menu-icon"></i>
+              <span class="menu-title">Cryptocurrency</span>
+            </a>
+          </li>
+
+          <li><hr class="solid"></li>
+          <li><p style="font-size: 13px;">CATEGORIES</p></li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/online">
+              <i class="mdi mdi-cart-outline menu-icon"></i>
+              <span class="menu-title">Online Shopping</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/food">
+              <i class="mdi mdi-food-fork-drink menu-icon"></i>
+              <span class="menu-title">Food</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/home">
+              <i class="mdi mdi-home menu-icon"></i>
+              <span class="menu-title">Home</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/recharge">
+              <i class="mdi mdi-amazon menu-icon"></i>
+              <span class="menu-title">Recharge</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/health">
+              <i class="mdi mdi-heart-pulse menu-icon"></i>
+              <span class="menu-title">Health</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/festival">
+              <i class="mdi mdi-fire menu-icon"></i>
+              <span class="menu-title">Festival</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/other">
+              <i class="mdi mdi-compass-outline menu-icon"></i>
+              <span class="menu-title">Others</span>
+            </a>
+          </li>
+
+          <li><hr class="solid"></li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/earning">
+              <i class="mdi mdi-coin menu-icon"></i>
+              <span class="menu-title">Earnings</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/payment">
+              <i class="mdi mdi-cards-outline menu-icon"></i>
+              <span class="menu-title">Payment Type</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/target">
+              <i class="mdi mdi-target menu-icon"></i>
+              <span class="menu-title">Targets</span>
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+
+          <!--Four Info's-->
+          <div class="row">
+            <div class="col-md-12 grid-margin transparent">
+              <div class="row">
+                <div class="col-md-3 mb-2 stretch-card transparent">
+                  <div class="card card-dark-pink">
+                    <div class="card-body">
+                      <p class="mb-3">Amount Spent</p>
+                      <p class="fs-30 mb-2">₹ {{ today_amount }}</p>
+                      <p> (Today) </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3 mb-2 stretch-card transparent">
+                  <div class="card card-dark-blue">
+                    <div class="card-body">
+                      <p class="mb-3">Previous Saving's</p>
+                      <p class="fs-30 mb-2">₹ {{ previous_savings }}</p>
+                      <p> Previous Months</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3 mb-2 stretch-card transparent">
+                  <div class="card card-new-red">
+                    <div class="card-body">
+                      <p class="mb-3">Monthly Earning's</p>
+                      <p class="fs-30 mb-2">₹ {{ month_earning }}</p>
+                      <p> (30 days)</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3 mb-2 stretch-card transparent">
+                  <div class="card card-new-blue">
+                    <div class="card-body">
+                      <p class="mb-3">Dedicated Saving's </p>
+                      <p class="fs-30 mb-2">₹ {{ dedicated_savings }}</p>
+                      <p> (All Time)</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--Monthly Spend Details-->
+
+          <div class="row">
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title">Montly Spent Details</p>
+                  <p class="font-weight-500">The Total Amount Spent Within The Month.</p>
+                  <div class="d-flex flex-wrap mb-5">
+                    <div class="mr-5 mt-3">
+                      <p class="text-muted">Total Amount</p>
+                      <h3 class="text-primary fs-30 font-weight-medium">₹ {{month_money}}</h3>
+                    </div>
+                    <div class="mr-5 mt-3">
+                      <p class="text-muted">Transactions Count</p>
+                      <h3 class="text-primary fs-30 font-weight-medium">{{ transaction_count }}</h3>
+                    </div>
+                    <div class="mr-5 mt-3">
+                      <p class="text-muted">Expenditure</p>
+                      {% if Expenditure > 0 %}
+                      <h3 class="text-danger fs-30 font-weight-medium">{{ Expenditure }}% <i class="ti-arrow-up"></i></h3>
+                      {% elif Expenditure == 0 %}
+                      <h3 class="text-success fs-30 font-weight-medium">{{ Expenditure }}% </h3>
+                      {% else %}
+                      <h3 class="text-success fs-30 font-weight-medium">{{ Expenditure * -1 }}% <i class="ti-arrow-down"></i></h3>
+                      {% endif %}
+                    </div>
+                  </div>
+                  <canvas id="month_chart"></canvas>
+                  <script type="text/javascript" id="month_chart">
+
+                  var month_data = {
+                    labels: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],
+                    datasets: [{
+                      // data: [300, 480, 700, 600, 620, 350, 380, 350, 850, 400, 450, 410, 1000, 480, 600, 450, 550, 460, 400, 450, 410, 500, 480, 600, 450, 550, 460, 600, 650, 350, 590],
+                      data: {{ day_values | safe}},
+                      borderColor: '#4747A1',
+                      label: "Amount Spent",
+                      borderWidth: 2,
+                      fill: false,
+                    }]
+                  }
+                  
+                  var month_options = {
+                    responsive: true,
+                    plugins: {
+                      filler: { propagate: true }
+                    },
+                    scales: {
+                      xAxes: [{
+                        display: true,
+                        ticks: {
+                          display: true,
+                          padding: 10,
+                          fontColor:"#6C7383",
+                          maxTicksLimit: 8
+                        },
+                        scaleLabel: {
+                          display: true,
+                          labelString: 'Days'
+                        },
+                        gridLines: {
+                          display: false,
+                          drawBorder: false,
+                          color: 'transparent',
+                          zeroLineColor: '#eeeeee'
+                        }
+                      }],
+                      yAxes: [{
+                        display: true,
+                        ticks: {
+                          display: true,
+                          autoSkip: false,
+                          maxRotation: 0,
+                          padding: 18,
+                          fontColor:"#6C7383",
+                          callback: function(value, index, values){return  value + '₹' ;},
+                          maxTicksLimit: 6
+                        },
+                        gridLines: {
+                          display: true,
+                          color:"#f2f2f2",
+                          drawBorder: false
+                        }
+                      }]
+                    },
+                    legend: { display: false },
+                    // tooltips: { enabled: true },
+                    elements: {
+                      line: { tension: .35 },
+                      point: { radius: 1.5 }
+                    }
+                  }
+
+                  const month = document.getElementById('month_chart').getContext('2d');
+                  const monthchart = new Chart(month, {
+                      type: 'line',
+                      data: month_data,
+                      options: month_options
+                  });
+
+                  </script>
+                </div>
+              </div>
+            </div>
+
+            <!--Earning and Saving Report-->
+
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between">
+                    <h3 class="card-title">Earning's and Saving's Report</h3>
+                    <!--<a href="#" class="text-info">View all</a>-->
+                  </div>
+                  <p class="font-weight-500">The Total Amount Earned And Total Amount Saved Within The Last 5 Months.</p>
+                  <!--<div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>-->
+                  <!--<canvas id="barChartearn"></canvas>-->
+                  <div class="d-flex flex-wrap mb-5">
+                  <div class="mr-5 mt-3">
+                    <p class="text-muted">Monthly Savings</p>
+                    <h3 class="text-primary fs-30 font-weight-medium">₹ {{ month_saving }}</h3>
+                  </div>
+                  <div class="mr-5 mt-3">
+                    <p class="text-muted">Earnings</p>
+                    {% if e_percentage > 0 %}
+                    <h3 class="text-success fs-30 font-weight-medium">{{ e_percentage }}% <i class="ti-arrow-up"></i></h3>
+                    {% elif e_percentage == 0 %}
+                    <h3 class="text-success fs-30 font-weight-medium">{{ e_percentage }}% </h3>
+                    {% else %}
+                    <h3 class="text-danger fs-30 font-weight-medium">{{ e_percentage * -1 }}% <i class="ti-arrow-down"></i></h3>
+                    {% endif %}
+                  </div>
+                  <div class="mr-5 mt-3">
+                    <p class="text-muted">Savings</p>
+                    {% if s_percentage > 0 %}
+                    <h3 class="text-success fs-30 font-weight-medium">{{ s_percentage }}% <i class="ti-arrow-up"></i></h3>
+                    {% elif s_percentage == 0 %}
+                    <h3 class="text-success fs-30 font-weight-medium">{{ s_percentage }}% </h3>
+                    {% else %}
+                    <h3 class="text-danger fs-30 font-weight-medium">{{ s_percentage * -1 }}% <i class="ti-arrow-down"></i></h3>
+                    {% endif %}
+                  </div>
+                  </div>
+                  <div class="card-body" id="barchart_material" ></div>
+                  <script>
+                  const earn = document1.getElementById('barChartearn').getContext('2d');
+                  const barChartearn = new Chart(earn, {
+                    type: 'bar',
+                    data: {
+                      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                      datasets: [{
+                        label: 'Earnings',
+                        data: [480, 440, 1000, 250, 5000],
+                        backgroundColor: '#98BDFF'
+                      },
+                      {
+                        label: 'Earnings',
+                        data: [480, 440, 470, 250, 330],
+                        backgroundColor: '#98BDFF'
+                      }]
+                    },
+                    options: {
+                      cornerRadius: 5,
+                      responsive: true,
+                      maintainAspectRatio: true,
+                      layout: {
+                        padding: {
+                          left: 0,
+                          right: 0,
+                          top: 20,
+                          bottom: 0
+                        }
+                      },
+                      scales: {
+                        yAxes: [{
+                          display: true,
+                          gridLines: {
+                            display: true,
+                            drawBorder: false,
+                            color: "#F2F2F2"
+                          },
+                          ticks: {
+                            display: true,
+                            callback: function(value, index, values) {
+                              return  value + '₹' ;
+                            },
+                            autoSkip: true,
+                            maxTicksLimit: 6,
+                            fontColor:"#6C7383"
+                          }
+                        }],
+                        xAxes: [{
+                          stacked: false,
+                          ticks: {
+                            beginAtZero: true,
+                            fontColor: "#6C7383"
+                          },
+                          scaleLabel: {
+                            display: true,
+                            labelString: 'Last 5 Months'
+                          },
+                          gridLines: {
+                            color: "rgba(0, 0, 0, 0)",
+                            display: false
+                          },
+                          barPercentage: 1
+                        }]
+                      },
+                      legend: {
+                        display: false
+                      },
+                      elements: {
+                        point: {
+                          radius: 0
+                        }
+                      },
+                      y: {
+                        beginAtZero: true
+                      }
+                    }            
+                    });           
+
+                  </script>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--"Yearly Detail Report"-->
+
+          <div class="row">
+            <div class="col-12 grid-margin">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title">Yearly Detail Report</p>
+                  <canvas id="areaChart1" width="1538" height="400"></canvas>
+                  <script type="text/javascript" id="year_chart">
+
+                    var options = {
+                      // responsive: true,
+                      plugins: {
+                        filler: {
+                          propagate: true
+                        }
+                      },
+                      scales: {
+                        xAxes: [{
+                          gridLines: {
+                            display: false
+                          },
+                          scaleLabel: {
+                            display: true,
+                            labelString: 'Months'
+                          },
+                          ticks:{
+                            maxTicksLimit: 6
+                          }
+                        }],
+                        yAxes: [{
+                          ticks: {
+                            maxTicksLimit: 5
+                          },
+                          scaleLabel: {
+                            display: true,
+                            labelString: 'Amount'
+                          }
+                        }]     
+                      }
+                    };
+
+                    var area_data = {
+                      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                      datasets: [{
+                        label: 'Amount Spend',
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+
+                        borderColor: 'rgba(54, 162, 235, 1)',
+
+                        data: {{ values | safe }},
+                        borderWidth: 2,
+                        fill: false,
+                      },
+                      {
+                        label: 'Amount Earned',
+                        backgroundColor: 'rgba(255, 99, 71, 0.2)',
+
+                        borderColor: 'rgba(255, 99, 71, 1)',
+
+                        data: {{ e_values | safe }},
+                        borderWidth: 2,
+                        fill: false,
+                      },
+                      {
+                        label: 'Amount Saved',
+                        backgroundColor: 'rgba(75, 73, 166, 0.2)',
+
+                        borderColor: 'rgba(75, 73, 166, 1)',
+
+                        data: {{ s_values | safe }},
+                        borderWidth: 2,
+                        fill: false,
+                      }
+                      ]
+                    };
+                    const ctx = document.getElementById('areaChart1').getContext('2d');
+                    const areaChart1 = new Chart(ctx, {
+                        type: 'line',
+                        data: area_data,
+                        options: options
+                    });
+                  </script>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--Category Wise Expenditure-->
+
+          <div class="row">
+            <div class="col-md-7 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Category Wise Expenditure</h4>
+                  <p class="card-description">
+                    Amount Spent On Each Category
+                  </p>
+                  <div class="table-responsive">
+                    <table class="card-body table table-striped table-borderless">
+                      <thead style="background-image: linear-gradient(to right, #8E2DE2, #4A00E0);color: white;">
+                        <tr>
+                          <th>Category</th>
+                          <th>Amount</th>
+                          <th>Amount (Prev)</th>
+                          <th>Percentage</th>
+                        </tr>  
+                      </thead>
+                      <tbody>
+                        {% for c in categories %}
+                        <tr>
+                           <td>{{c["Category"]}}</td>
+                           {% if c["Amount"] > 0 %}
+                           <td>₹ {{c["Amount"]}}</td>
+                           {% else %}
+                           <td>₹ 0</td>
+                           {% endif %}
+                           <td>₹ {{c["Amount_Previous"]}}</td>
+                           {% if c["Percentage"] > 0 %}
+                           <td class="text-danger fs-30 font-weight-bold"> {{ c["Percentage"] }} % <i class="ti-arrow-up"></i></td>
+                           {% elif c["Percentage"] == 0 %}
+                           <td class="text-success fs-30 font-weight-bold"> {{ c["Percentage"] }} %</td>
+                           {% else %}
+                           <td class="text-success fs-30 font-weight-bold"> {{ -c["Percentage"] }} % <i class="ti-arrow-down"></i></td>
+                           {% endif %}
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--To Do Lists-->
+
+            <div class="col-md-5 grid-margin stretch-card">
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">To Do Lists</h4>
+									<div class="list-wrapper pt-2">
+										<ul class="d-flex flex-column-reverse todo-list todo-list-custom">
+											<li>
+												<div class="form-check form-check-flat">
+													<label class="form-check-label">
+														<input class="checkbox" type="checkbox">
+														Do Mobile Recharge & Cable TV
+													</label>
+												</div>
+												<i class="remove ti-close"></i>
+											</li>
+											<li class="completed">
+												<div class="form-check form-check-flat">
+													<label class="form-check-label">
+														<input class="checkbox" type="checkbox" checked>
+														Buy Groceries
+													</label>
+												</div>
+												<i class="remove ti-close"></i>
+											</li>
+											<li>
+												<div class="form-check form-check-flat">
+													<label class="form-check-label">
+														<input class="checkbox" type="checkbox">
+														House Rent & Milk Bill
+													</label>
+												</div>
+												<i class="remove ti-close"></i>
+											</li>
+											<li class="completed">
+												<div class="form-check form-check-flat">
+													<label class="form-check-label">
+														<input class="checkbox" type="checkbox" checked>
+														Buy Amazon Prime Video Subscription
+													</label>
+												</div>
+												<i class="remove ti-close"></i>
+											</li>
+											<li>
+												<div class="form-check form-check-flat">
+													<label class="form-check-label">
+														<input class="checkbox" type="checkbox">
+														Buy Medicines
+													</label>
+												</div>
+												<i class="remove ti-close"></i>
+											</li>
+										</ul>
+                  </div>
+                  <div class="add-items d-flex mb-0 mt-2">
+										<input type="text" class="form-control todo-list-input"  placeholder="Add new task">
+										<button class="add btn btn-icon text-primary todo-list-add-btn bg-transparent"><i class="icon-circle-plus"></i></button>
+									</div>
+								</div>
+							</div>
+            </div>
+          </div>
+
+          <!-- Expenditure Information-->
+
+          <!--<div class="row">
+            <div class="col-12 grid-margin">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Expenditure Information</h4>
+                  <form class="form-sample", action="/", method="POST">
+                    <input type="hidden" name="form-name" value="form1">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Bill</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="Bill" placeholder="Enter Bill Details"/>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label"> Holder's Name</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" name="Holder_Name" placeholder="Enter Bill Holder's Name"/>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Category</label>
+                          <div class="col-sm-9">
+                            <select class="form-control" name="Category">
+                              <option>Online Shopping</option>
+                              <option>Food</option>
+                              <option>Home Maintanence</option>
+                              <option>Digital Recharge</option>
+                              <option>Health Maintenance</option>
+                              <option>Festival Expenditure</option>
+                              <option>Others</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Payment Mode</label>
+                          <div class="col-sm-9">
+                            <select class="form-control" name="Payment_Mode">
+                              <option>Cash</option>
+                              <option>Credit Card</option>
+                              <option>Debit Card</option>
+                              <option>Phonpe UPI</option>
+                              <option>Google Pay UPI</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Amount</label>
+                            <div class="col-sm-9">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text bg-primary text-white">₹</span>
+                                <input type="text" class="form-control" name="Amount" placeholder="Amount Spent"/>
+                                <span class="input-group-text">.00</span>
+                              </div>
+
+                            </div>
+                          </div>
+                      </div>
+
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">User</label>
+                          <div class="col-sm-9">
+                            <select class="form-control" name="User">
+                              <option>M Gayathri</option>
+                              <option>M V Rama Rao</option>
+                              <option>M Keerthana</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2"  >Submit</button>
+                    <button type="reset" class="btn btn-light">Reset</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>-->
+
+          <!-- New Expenditure Information-->
+
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <div id="detailedReports" class="carousel slide detailed-report-carousel position-static " data-ride="carousel">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+
+                        <!-- Expenditure Information-->   
+                        <div class="row">
+                          <div class="col-12 grid-margin">
+                            <div class="card">
+                              <div class="card-body">
+                                <h4 class="card-title">Expenditure Information</h4>
+                                <form class="form-sample", action="/", method="POST">
+                                  <input type="hidden" name="form-name" value="form1">
+                                  <div class="row">
+                                    <div class="col-md-6">
+                                      <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Bill</label>
+                                        <div class="col-sm-9">
+                                          <input type="text" class="form-control" name="Bill" placeholder="Enter Bill Details"/>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label"> Holder's Name</label>
+                                        <div class="col-sm-9">
+                                          <input type="text" class="form-control" name="Holder_Name" placeholder="Enter Bill Holder's Name"/>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                
+                                  <div class="row">
+                                    <div class="col-md-6">
+                                      <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Category</label>
+                                        <div class="col-sm-9">
+                                          <select class="form-control" name="Category">
+                                            <option>Online Shopping</option>
+                                            <option>Food</option>
+                                            <option>Home Maintanence</option>
+                                            <option>Digital Recharge</option>
+                                            <option>Health Maintenance</option>
+                                            <option>Festival Expenditure</option>
+                                            <option>Others</option>
+                                          </select>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Payment Mode</label>
+                                        <div class="col-sm-9">
+                                          <select class="form-control" name="Payment_Mode">
+                                            <option>Cash</option>
+                                            <option>Credit Card</option>
+                                            <option>Debit Card</option>
+                                            <option>Phonpe UPI</option>
+                                            <option>Google Pay UPI</option>
+                                          </select>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                
+                                  <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                          <label class="col-sm-3 col-form-label">Amount</label>
+                                          <div class="col-sm-9">
+                                            <div class="input-group-prepend">
+                                              <span class="input-group-text bg-primary text-white">$</span>
+                                              <input type="text" class="form-control" name="Amount" placeholder="Amount Spent"/>
+                                              <span class="input-group-text">.00</span>
+                                            </div>
+
+                                          </div>
+                                        </div>
+                                    </div>
+                                  
+                                    <div class="col-md-6">
+                                      <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Spent For</label>
+                                        <div class="col-sm-9">
+                                          <select class="form-control" name="User">
+                                            <option>M Gayathri</option>
+                                            <option>M V Rama Rao</option>
+                                            <option>M Keerthana</option>
+                                            <option>Combined</option>
+                                          </select>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <button type="submit" class="btn btn-primary mr-2 ">Submit</button>
+                                  <button type="reset" class="btn btn-light">Reset</button>
+
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="carousel-item">
+
+                       <!-- Previous Savings Expenditure-->   
+                        <div class="row">
+                          <div class="col-12 grid-margin">
+                            <div class="card">
+                              <div class="card-body">
+                                <h4 class="card-title">Previous Savings Expenditure</h4>
+                                <form class="form-sample", action="/", method="POST">
+                                  <input type="hidden" name="form-name" value="form3">
+                                  <div class="row">
+                                    <div class="col-md-6">
+                                      <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Bill</label>
+                                        <div class="col-sm-9">
+                                          <input type="text" class="form-control" name="Bill" placeholder="Enter Bill Details"/>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label"> Holder's Name</label>
+                                        <div class="col-sm-9">
+                                          <input type="text" class="form-control" name="Holder_Name" placeholder="Enter Bill Holder's Name"/>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                
+                                  <div class="row">
+                                    <div class="col-md-6">
+                                      <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Category</label>
+                                        <div class="col-sm-9">
+                                          <select class="form-control" name="Category">
+                                            <option>Online Shopping</option>
+                                            <option>Food</option>
+                                            <option>Home Maintanence</option>
+                                            <option>Digital Recharge</option>
+                                            <option>Health Maintenance</option>
+                                            <option>Festival Expenditure</option>
+                                            <option>Others</option>
+                                          </select>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Payment Mode</label>
+                                        <div class="col-sm-9">
+                                          <select class="form-control" name="Payment_Mode">
+                                            <option>Cash</option>
+                                            <option>Credit Card</option>
+                                            <option>Debit Card</option>
+                                            <option>Phonpe UPI</option>
+                                            <option>Google Pay UPI</option>
+                                          </select>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                
+                                  <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                          <label class="col-sm-3 col-form-label">Amount</label>
+                                          <div class="col-sm-9">
+                                            <div class="input-group-prepend">
+                                              <span class="input-group-text bg-primary text-white">$</span>
+                                              <input type="text" class="form-control" name="Amount" placeholder="Amount Spent"/>
+                                              <span class="input-group-text">.00</span>
+                                            </div>
+
+                                          </div>
+                                        </div>
+                                    </div>
+                                  
+                                    <div class="col-md-6">
+                                      <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Spent For</label>
+                                        <div class="col-sm-9">
+                                          <select class="form-control" name="User">
+                                            <option>M Gayathri</option>
+                                            <option>M V Rama Rao</option>
+                                            <option>M Keerthana</option>
+                                            <option>Combined</option>
+                                          </select>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="row" style="height: 44px;">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                          <label class="col-sm-3 col-form-label">Date</label>
+                                          <div class="col-sm-9">
+                                            <div class="input-group-prepend">
+                                              <input type="text" class="form-control" name="Date" placeholder="Enter Date (yyyy-mm-dd)"/>
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <button type="submit" class="btn btn-primary mr-2 ">Submit</button>
+                                      <button type="reset" class="btn btn-light">Reset</button>
+                                    </div>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#detailedReports" role="button" data-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#detailedReports" role="button" data-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--Earnings Information-->
+
+          <div class="row">
+            <div class="col-12 grid-margin">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Earning's Information</h4>
+                  <form class="form-sample" action='/' method="POST">
+                    <input type="hidden" name="form-name" value="form2">
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Amount</label>
+                          <div class="col-sm-9">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text bg-primary text-white">₹</span>
+                              <input type="text" class="form-control" name="Amount" placeholder="Amount Earned"/>
+                              <span class="input-group-text">.00</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Category</label>
+                          <div class="col-sm-9">
+                            <select class="form-control" name="Category">
+                              <option>Personal</option>
+                              <option>Salary</option>
+                              <option>Crypto</option>
+                              <option>Srinu Given</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Your Name</label>
+                          <div class="col-sm-9">
+                            <select class="form-control" name="User">
+                              <option>M Gayathri</option>
+                              <option>M V Rama Rao</option>
+                              <option>M Keerthana</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Amount Form</label>
+                          <div class="col-sm-9">
+                            <select class="form-control" name="amount_form">
+                              <option>Liquid Cash</option>
+                              <option>Digital Cash</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button type="reset" class="btn btn-light">Reset</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            </div>
+
+          <!--Dedicated Savings-->
+          
+          <div class="row">
+            <div class="col-12 grid-margin">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Dedicated Savings</h4>
+                  <form class="form-sample" action='/' method='POST'>
+                    <input type="hidden" name="form-name" value="form4">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Amount</label>
+                          <div class="col-sm-9">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text bg-primary text-white">$</span>
+                              <input type="text" class="form-control" name="Amount" placeholder="Amount Spent"/>
+                              <span class="input-group-text">.00</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Product</label>
+                          <div class="col-sm-9">
+                            <select class="form-control" name="Product_Name">
+                              {% for i in Product_Names %}
+                              <option>{{ i }}</option>
+                              {% endfor %}
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">User</label>
+                        <div class="col-sm-9">
+                          <select class="form-control" name="User">
+                            <option>M Gayathri</option>
+                            <option>M V Rama Rao</option>
+                            <option>M Keerthana</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Amount Form</label>
+                        <div class="col-sm-9">
+                          <select class="form-control" name="Amount_Form">
+                            <option>Liquid Cash</option>
+                            <option>Digital Cash</option>
+                            <option></option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button type="reset" class="btn btn-light">Reset</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--Expenditure Table-->
+
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="col-lg-12 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title">Expenditure Table</h4>
+                      <p class="card-description">
+                        Latest Transactions Done By The Customer
+                      </p>
+                      <div class="table-responsive">
+                        <table class="table table-striped">
+                          <thead style="background-image: linear-gradient(to right, #8E2DE2, #4A00E0);color: white;">
+                            <tr>
+                              <th>Date</th>
+                              <th>Spent For</th>
+                              <th>Bill</th>
+                              <th>Bill Holder's Name</th>
+                              <th>Category type</th>
+                              <th>Mode Of Payment</th>
+                              <th>Amount</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {% for row in rows %}
+                            <tr>
+                               <td>{{row["Date"]}}</td>
+                               <td>{{row["User"]}}</td>
+                               <td> {{ row["Bill"]}}</td>
+                               <td>{{row['Holder_Name']}}</td>
+                               <td>{{row['Category']}}</td>	
+                               <td>{{row['Payment_Mode']}}</td>	
+                               <td>{{row['Amount']}}</td>		
+                            </tr>
+                            {% endfor %}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  <!-- plugins:js -->
+  <script src="static/vendors/js/vendor.bundle.base.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <script src="static/vendors/chart.js/Chart.min.js"></script>
+  <script src="static/vendors/datatables.net/jquery.dataTables.js"></script>
+  <script src="static/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+  <script src="static/js/dataTables.select.min.js"></script>
+
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="static/js/off-canvas.js"></script>
+  <script src="static/js/hoverable-collapse.js"></script>
+  <script src="static/js/template.js"></script>
+  <script src="static/js/settings.js"></script>
+  <script src="static/js/todolist.js"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="static/js/dashboard.js"></script>
+  <script src="static/js/Chart.roundedBarCharts.js"></script>
+  <!-- End custom js for this page-->
+
+    <!-- container-scroller -->>
+  <!-- Custom js for this page-->
+  <script src="static/js/chart.js"></script>
+  <!-- End custom js for this page-->
+
+
+  
+  
+</body>
+
+</html>
+
